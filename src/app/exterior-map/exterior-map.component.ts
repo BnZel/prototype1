@@ -1,12 +1,7 @@
-// Render static map of the GBC Exterior View image
+// -Render static map of the GBC Exterior View image
 // Add location pin for starting location in Parking lot
 // Create Hot Spots on the Buildings, that allow for hovering and selecting destination
 // Use HTML5 Canvas to draw and overlay the direction path to destination Building
-
-
-// NOTE: Use GPX file to store location data
-//       leaflet-omnivore to parse map data (JSON)
-//       Mapbox API integrates well with leaflet
 
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
@@ -18,21 +13,22 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 export class ExteriorMapComponent implements OnInit {
 
-  // Canvas for display map within 
+  // Canvas to display map  
   @ViewChild('mapCanvas', {static:true}) 
   mapCanvas: ElementRef;
-  public context: CanvasRenderingContext2D;
+  image = new Image();
+  imageSrc = 'assets/images/campusmap.png'
 
   constructor() { }
 
   ngOnInit() {
-    
-  }
-
-  // Called after Angular has fully initialized a component's view
-  // Define handle any additional initialization tasks
-  ngAfterViewInit(): void{
-    this.context == (<HTMLCanvasElement>this.mapCanvas.nativeElement).getContext('2d');
+    let context: CanvasRenderingContext2D = this.mapCanvas.nativeElement.getContext('2d');
+    this.image.src = this.imageSrc;
+    this.image.onload = () => {
+      if(this.image.src.length > 0){
+        context.drawImage(this.image,0,0);
+      }
+    }
   }
 
 }
