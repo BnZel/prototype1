@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExteriorMapComponent } from './exterior-map/exterior-map.component';
+import {MaterialModule} from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ExteriorMapComponent } from './exterior-map/exterior-map.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@
 // Use HTML5 Canvas to draw and overlay the direction path to destination Building
 
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { MaterialModule } from '../material/material.module';
 
 @Component({
   selector: 'app-exterior-map',
@@ -14,21 +15,30 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 export class ExteriorMapComponent implements OnInit {
 
   // Canvas to display map  
-  @ViewChild('mapCanvas', {static:true}) 
+  @ViewChild('mapCanvas', { static: true })
   mapCanvas: ElementRef;
+
   image = new Image();
   imageSrc = 'assets/images/campusmap.png'
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
+
     let context: CanvasRenderingContext2D = this.mapCanvas.nativeElement.getContext('2d');
+
     this.image.src = this.imageSrc;
     this.image.onload = () => {
-      if(this.image.src.length > 0){
-        context.drawImage(this.image,0,0);
+      if (this.image.src.length > 0) {
+        context.drawImage(this.image, 0, 0);
       }
     }
+  }
+
+  onBuildingSelected(): void {
+
   }
 
 }
